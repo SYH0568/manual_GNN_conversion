@@ -60,7 +60,10 @@ void vec_to_mat( //faster (I think)
     data_T vec[CONFIG_T::n_rows*CONFIG_T::n_cols],
     res_T mat[CONFIG_T::n_rows][CONFIG_T::n_cols]
 ) {
+    
     for (int r=0; r < CONFIG_T::n_rows; r++){
+      #pragma HLS UNROLL 
+      //#pragma HLS PIPELINE II=1 
       for (int c=0; c < CONFIG_T::n_cols; c++){
         #pragma HLS UNROLL
         mat[r][c] = vec[r*CONFIG_T::n_cols+c];
@@ -74,8 +77,10 @@ void mat_to_vec( //faster (I think)
     res_T vec[CONFIG_T::n_rows*CONFIG_T::n_cols]
 ) {
     for (int r=0; r < CONFIG_T::n_rows; r++){
+      #pragma HLS UNROLL  
+      //#pragma HLS PIPELINE II=1
       for (int c=0; c<CONFIG_T::n_cols; c++){
-        #pragma HLS UNROLL
+          #pragma HLS UNROLL
         vec[r*CONFIG_T::n_cols+c] = mat[r][c];
       }
     }

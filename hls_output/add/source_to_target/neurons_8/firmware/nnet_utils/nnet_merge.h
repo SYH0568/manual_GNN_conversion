@@ -155,10 +155,14 @@ void concatenate1d(
     input2_T data2[CONFIG_T::n_elem2_0],
     res_T res[CONFIG_T::n_elem1_0 + CONFIG_T::n_elem2_0])
 {
+    //#pragma DATAFLOW
     for (int ii=0; ii<CONFIG_T::n_elem1_0; ii++) {
+        #pragma HLS UNROLL
+        //#pragma HLS PIPELINE II=1
         res[ii] = data1[ii];
     }
     for (int ii=0; ii<CONFIG_T::n_elem2_0; ii++) {
+        #pragma HLS UNROLL
         res[CONFIG_T::n_elem1_0 + ii] = data2[ii];
     }
 }

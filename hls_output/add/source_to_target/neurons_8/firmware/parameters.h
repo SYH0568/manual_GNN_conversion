@@ -58,7 +58,8 @@ struct config4: nnet::graph_config{
     static const unsigned reuse_factor = 1;
     static const unsigned n_zeros = 0;
     static const bool io_stream = false; 
-
+    static const bool activate_final = false;
+    static const bool resource_limit = RESOURCE_LIMIT;
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 10;
         static const unsigned n_out = 8;
@@ -185,20 +186,27 @@ struct config4: nnet::graph_config{
     
         static const int axis = 0;
     };
+    struct sigmoid_config1 : nnet::activ_config {
+        static const unsigned n_in = EDGE_DIM;
+        static const unsigned table_size = 1024;
+        static const unsigned io_type = nnet::io_parallel;
+        static const unsigned reuse_factor = 1;
+        typedef ap_fixed<18,8> table_t;
+    };
     
 };
 // aggr5
 struct aggregation_config5: nnet::aggregate_config{
     typedef layer5_t table_t;
-    static const unsigned n_node = 28;
-    static const unsigned n_edge = 37;
+    static const unsigned n_node = N_NODE;
+    static const unsigned n_edge = N_EDGE;
     static const unsigned edge_dim = 4;
     static const unsigned aggr = 0;
     static const unsigned flow = 0;
     static const unsigned io_type = nnet::io_parallel;
     static const unsigned reuse_factor = 1;
     static const bool io_stream = false;
-
+    static const bool resource_limit = RESOURCE_LIMIT;
     struct edge_attr_config: nnet::matrix_config{
                                 static const unsigned n_rows = N_EDGE;
                                 static const unsigned n_cols = EDGE_DIM;
@@ -216,8 +224,8 @@ struct aggregation_config5: nnet::aggregate_config{
 
     struct nested_duplicate: nnet::aggregate_config{
         typedef layer5_t table_t;
-        static const unsigned n_node = 28;
-        static const unsigned n_edge = 37;
+        static const unsigned n_node = N_NODE;
+        static const unsigned n_edge = N_EDGE;
         static const unsigned edge_dim = 4;
         static const unsigned aggr = 0;
         static const unsigned flow = 0;
@@ -241,7 +249,7 @@ struct config6: nnet::graph_config{
     static const unsigned reuse_factor = 1;
     static const unsigned n_zeros = 0;
     static const bool io_stream = false; 
-
+    static const bool resource_limit = RESOURCE_LIMIT;
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 7;
         static const unsigned n_out = 8;
@@ -369,7 +377,8 @@ struct config7: nnet::graph_config{
     static const unsigned reuse_factor = 1;
     static const unsigned n_zeros = 0;
     static const bool io_stream = false; 
-
+    static const bool activate_final = true;
+    static const bool resource_limit = RESOURCE_LIMIT;
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 10;
         static const unsigned n_out = 8;
@@ -496,9 +505,15 @@ struct config7: nnet::graph_config{
     
         static const int axis = 0;
     };
-    
+    //move sigmoid config into graph config
+    struct sigmoid_config1 : nnet::activ_config {
+        static const unsigned n_in = LAYER7_OUT_DIM;
+        static const unsigned table_size = 1024;
+        static const unsigned io_type = nnet::io_parallel;
+        static const unsigned reuse_factor = 1;
+        typedef ap_fixed<18,8> table_t;
+    };
 };
-// final_act
 struct sigmoid_config8 : nnet::activ_config {
     static const unsigned n_in = N_EDGE*LAYER7_OUT_DIM;
     static const unsigned table_size = 1024;
@@ -506,6 +521,4 @@ struct sigmoid_config8 : nnet::activ_config {
     static const unsigned reuse_factor = 1;
     typedef ap_fixed<18,8> table_t;
 };
-
-
 #endif
