@@ -91,9 +91,9 @@ void myproject(
     //hls-fpga-machine-learning insert layers
 
     layer2_t node_attr_cpy1[N_NODE*NODE_DIM];
-    #pragma HLS ARRAY_RESHAPE variable=node_attr_cpy1 cyclic factor=node_dim dim=1
+    #pragma HLS ARRAY_PARTITION variable=node_attr_cpy1 cyclic factor=node_dim dim=1
     layer2_t node_attr_cpy2[N_NODE*NODE_DIM];
-    #pragma HLS ARRAY_RESHAPE variable=node_attr_cpy2 cyclic factor=node_dim dim=1
+    #pragma HLS ARRAY_PARTITION variable=node_attr_cpy2 cyclic factor=node_dim dim=1
     nnet::clone_vec<input_t, node_attr_config>(node_attr, node_attr_cpy1, node_attr_cpy2); // node_attr_clone_0
 
     layer5_t edge_index_cpy1[N_EDGE*TWO];
@@ -103,27 +103,27 @@ void myproject(
     nnet::clone_vec<input4_t, edge_index_config>(edge_index, edge_index_cpy1, edge_index_cpy2); // edge_index_clone_0
 
     layer6_t edge_index_cpy3[N_EDGE*TWO];
-    #pragma HLS ARRAY_PARTITION variable=edge_index_cpy3 complete dim=0
+    #pragma HLS ARRAY_PARTITION variable=edge_index_cpy3 cyclic factor=two dim=1
     layer6_t edge_index_cpy4[N_EDGE*TWO];
-    #pragma HLS ARRAY_PARTITION variable=edge_index_cpy4 complete dim=0
+    #pragma HLS ARRAY_PARTITION variable=edge_index_cpy4 cyclic factor=two dim=1
     nnet::clone_vec<layer5_t, edge_index_config>(edge_index_cpy1, edge_index_cpy3, edge_index_cpy4); // edge_index_clone_1
 
     layer7_t layer7_out[N_EDGE*LAYER7_OUT_DIM];
-    #pragma HLS ARRAY_RESHAPE variable=layer7_out cyclic factor=layer7_out_dim dim=1
+    #pragma HLS ARRAY_PARTITION variable=layer7_out cyclic factor=layer7_out_dim dim=1
     nnet::edgeblock<input3_t, input4_t, layer7_t, config7>(node_attr_cpy1, edge_attr, edge_index_cpy2, layer7_out, R1_w0, R1_b0, R1_w1, R1_b1, R1_w2, R1_b2, R1_w3, R1_b3); // R1
 
     layer8_t layer7_out_cpy1[N_EDGE*LAYER7_OUT_DIM];
-    #pragma HLS ARRAY_PARTITION variable=layer7_out_cpy1 complete dim=0
+    #pragma HLS ARRAY_PARTITION variable=layer7_out_cpy1 cyclic factor=layer_7_out_dim dim=1
     layer8_t layer7_out_cpy2[N_EDGE*LAYER7_OUT_DIM];
-    #pragma HLS ARRAY_PARTITION variable=layer7_out_cpy2 complete dim=0
+    #pragma HLS ARRAY_PARTITION variable=layer7_out_cpy2 cyclic factor=layer_7_out_dim dim=1
     nnet::clone_vec<layer7_t, layer7_out_config>(layer7_out, layer7_out_cpy1, layer7_out_cpy2); // layer7_out_clone_0
 
     layer9_t layer9_out[N_NODE*LAYER9_OUT_DIM];
-    #pragma HLS ARRAY_RESHAPE variable=layer9_out cyclic factor=layer7_out_dim dim=1
+    #pragma HLS ARRAY_PARTITION variable=layer9_out cyclic factor=layer7_out_dim dim=1
     nnet::edge_aggregate<input3_t, input4_t, layer9_t, aggregation_config9>(layer7_out_cpy1, edge_index_cpy3, layer9_out); // aggr5
 
     layer10_t layer10_out[N_NODE*LAYER10_OUT_DIM];
-    #pragma HLS ARRAY_RESHAPE variable=layer10_out cyclic factor=layer10_out_dim dim=1
+    #pragma HLS ARRAY_PARTITION variable=layer10_out cyclic factor=layer10_out_dim dim=1
     nnet::nodeblock<input_t, layer10_t, config10>(node_attr_cpy2, layer9_out, layer10_out, O_w0, O_b0, O_w1, O_b1, O_w2, O_b2, O_w3, O_b3); // O
 
     nnet::edgeblock<input3_t, input4_t, layer11_t, config11>(layer10_out, layer7_out_cpy2, edge_index_cpy4, layer11_out, R2_w0, R2_b0, R2_w1, R2_b1, R2_w2, R2_b2, R2_w3, R2_b3); // R2
