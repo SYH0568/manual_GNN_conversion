@@ -159,7 +159,7 @@ void  sigmoid(data_T data[CONFIG_T::n_in], res_T res[CONFIG_T::n_in])
     // Index into the lookup table based on data
     int data_round;
     int index;
-    sigmoid: for (int ii=0; ii<CONFIG_T::n_in; ii++) {
+    for (int ii=0; ii<CONFIG_T::n_in; ii++) {
         if (CONFIG_T::io_type == io_serial){
             #pragma HLS PIPELINE
         }

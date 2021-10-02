@@ -28,8 +28,8 @@
 
 // Prototype of top level function for C-synthesis
 void myproject(
-    input_t node_attr[N_NODE*NODE_DIM], input2_t edge_attr[N_EDGE*EDGE_DIM], input3_t edge_index[N_EDGE*TWO],
-    result_t layer8_out[N_EDGE*LAYER7_OUT_DIM],
+    input_t node_attr[N_NODE*NODE_DIM], input3_t edge_attr[N_EDGE*EDGE_DIM], input4_t edge_index[N_EDGE*TWO],
+    layer11_t layer11_out[N_EDGE*LAYER11_OUT_DIM],
     unsigned short &const_size_in_1, unsigned short &const_size_in_2, unsigned short &const_size_in_3,
     unsigned short &const_size_out_1
 );
