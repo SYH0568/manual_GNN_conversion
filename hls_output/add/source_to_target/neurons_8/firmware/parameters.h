@@ -43,17 +43,17 @@
 //hls-fpga-machine-learning insert layer-config
 // node_attr_clone_0
 struct node_attr_config: nnet::matrix_config{
-                            static const unsigned n_rows = 28;
+                            static const unsigned n_rows = N_NODE;
                             static const unsigned n_cols = 3;
                         };
 // edge_index_clone_0
 struct edge_index_config: nnet::matrix_config{
-                            static const unsigned n_rows = 37;
+                            static const unsigned n_rows = N_EDGE;
                             static const unsigned n_cols = 2;
                         };
 // edge_index_clone_1
 struct edge_index_cpy1_config: nnet::matrix_config{
-                            static const unsigned n_rows = 37;
+                            static const unsigned n_rows = N_EDGE;
                             static const unsigned n_cols = 2;
                         };
 // R1
@@ -219,7 +219,7 @@ struct config7: nnet::graph_config{
 };
 // layer7_out_clone_0
 struct layer7_out_config: nnet::matrix_config{
-                            static const unsigned n_rows = 37;
+                            static const unsigned n_rows = N_EDGE;
                             static const unsigned n_cols = 4;
                         };
 // aggr5
