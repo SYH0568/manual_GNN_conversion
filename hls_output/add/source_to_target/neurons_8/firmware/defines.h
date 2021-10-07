@@ -6,8 +6,8 @@
 #include "nnet_utils/nnet_types.h"
 
 //hls-fpga-machine-learning insert numbers
-#define N_NODE 448
-#define N_EDGE 592
+#define N_NODE 1792
+#define N_EDGE 2368
 #define NODE_DIM 3
 #define LAYER7_OUT_DIM 4
 #define LAYER10_OUT_DIM 3

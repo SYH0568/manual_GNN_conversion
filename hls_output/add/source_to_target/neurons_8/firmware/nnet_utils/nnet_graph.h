@@ -364,7 +364,7 @@ namespace nnet {
       }
       for(int i=0; i < CONFIG_T::n_edge; i++){
         #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-        #pragma HLS UNROLL factor=2
+        //#pragma HLS UNROLL factor=2
         index_T r = edge_index_1D[i*2+receiver_col];
         for(int j=0; j<CONFIG_T::edge_dim; j++){
           #pragma HLS UNROLL
