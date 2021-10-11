@@ -44,17 +44,17 @@
 // node_attr_clone_0
 struct node_attr_config: nnet::matrix_config{
                             static const unsigned n_rows = N_NODE;
-                            static const unsigned n_cols = 3;
+                            static const unsigned n_cols = NODE_DIM;
                         };
 // edge_index_clone_0
 struct edge_index_config: nnet::matrix_config{
                             static const unsigned n_rows = N_EDGE;
-                            static const unsigned n_cols = 2;
+                            static const unsigned n_cols = TWO;
                         };
 // edge_index_clone_1
 struct edge_index_cpy1_config: nnet::matrix_config{
                             static const unsigned n_rows = N_EDGE;
-                            static const unsigned n_cols = 2;
+                            static const unsigned n_cols = TWO;
                         };
 // R1
 struct config7: nnet::graph_config{
@@ -74,6 +74,7 @@ struct config7: nnet::graph_config{
     static const bool io_stream = false; 
     static const bool activate_final = false;
     static const bool gnn_resource_limit = true;
+    static const unsigned par_factor = 16;
 
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 10;
@@ -168,7 +169,7 @@ struct config7: nnet::graph_config{
         static const unsigned table_size = 1024;
         static const unsigned io_type = nnet::io_parallel;
         static const unsigned reuse_factor = 1;
-        static const unsigned activation_type = 0;
+        static const unsigned activation = 0;
         typedef ap_fixed<18,8> table_t;
     };
     
@@ -220,7 +221,7 @@ struct config7: nnet::graph_config{
 // layer7_out_clone_0
 struct layer7_out_config: nnet::matrix_config{
                             static const unsigned n_rows = N_EDGE;
-                            static const unsigned n_cols = 4;
+                            static const unsigned n_cols = LAYER7_OUT_DIM;
                         };
 // aggr5
 struct aggregation_config9: nnet::edge_aggregate_config{
@@ -235,6 +236,7 @@ struct aggregation_config9: nnet::edge_aggregate_config{
     static const bool io_stream = false;
     static const bool activate_final = false;
     static const bool gnn_resource_limit = true;
+    static const unsigned par_factor = 16;
 
     struct edge_attr_config: nnet::matrix_config{
                                 static const unsigned n_rows = N_EDGE;
@@ -265,6 +267,7 @@ struct config10: nnet::graph_config{
     static const bool io_stream = false; 
     static const bool activate_final = false;
     static const bool gnn_resource_limit = true;
+    static const unsigned par_factor = 16;
 
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 7;
@@ -359,7 +362,7 @@ struct config10: nnet::graph_config{
         static const unsigned table_size = 1024;
         static const unsigned io_type = nnet::io_parallel;
         static const unsigned reuse_factor = 1;
-        static const unsigned activation_type = 0;
+        static const unsigned activation = 0;
         typedef ap_fixed<18,8> table_t;
     };
     
@@ -413,6 +416,7 @@ struct config11: nnet::graph_config{
     static const bool io_stream = false; 
     static const bool activate_final = true;
     static const bool gnn_resource_limit = true;
+    static const unsigned par_factor = 16;
 
     struct dense_config1 : nnet::dense_config {
         static const unsigned n_in = 10;
@@ -507,7 +511,7 @@ struct config11: nnet::graph_config{
         static const unsigned table_size = 1024;
         static const unsigned io_type = nnet::io_parallel;
         static const unsigned reuse_factor = 1;
-        static const unsigned activation_type = 2;
+        static const unsigned activation = 2;
         typedef ap_fixed<18,8> table_t;
     };
     
