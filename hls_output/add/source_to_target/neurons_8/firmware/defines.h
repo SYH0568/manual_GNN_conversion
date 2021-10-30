@@ -6,15 +6,15 @@
 #include "nnet_utils/nnet_types.h"
 
 //hls-fpga-machine-learning insert numbers
-#define LAYER9_OUT_DIM 4
-#define NODE_DIM 3
-#define EDGE_DIM 4
+#define N_EDGE 204
 #define LAYER10_OUT_DIM 3
-#define N_NODE 112*16
-#define LAYER7_OUT_DIM 4
-#define LAYER11_OUT_DIM 1
-#define N_EDGE 204*16
 #define TWO 2
+#define N_NODE 112
+#define NODE_DIM 3
+#define LAYER9_OUT_DIM 4
+#define EDGE_DIM 4
+#define LAYER11_OUT_DIM 1
+#define LAYER7_OUT_DIM 4
 
 //hls-fpga-machine-learning insert layer-precision
 typedef ap_fixed<16,8> model_default_t;

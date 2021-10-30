@@ -31,13 +31,13 @@ void myproject(
     //#pragma HLS DATAFLOW doesn't recognize macros
     int n_edge = N_EDGE;
     int n_node = N_NODE;
-    int edge_dim = EDGE_DIM*16;
-    int layer7_out_dim = LAYER7_OUT_DIM*16;
-    int node_dim = NODE_DIM*16;
-    int layer10_out_dim = LAYER10_OUT_DIM*16;
-    int layer11_out_dim = LAYER11_OUT_DIM*16;
-    int layer9_out_dim = LAYER9_OUT_DIM*16;
     int two = TWO*16;
+    int node_dim = NODE_DIM*16;
+    int layer7_out_dim = LAYER7_OUT_DIM*16;
+    int edge_dim = EDGE_DIM*16;
+    int layer11_out_dim = LAYER11_OUT_DIM*16;
+    int layer10_out_dim = LAYER10_OUT_DIM*16;
+    int layer9_out_dim = LAYER9_OUT_DIM*16;
 
     //hls-fpga-machine-learning insert IO
     #pragma HLS ARRAY_PARTITION variable=node_attr cyclic factor=node_dim dim=1
