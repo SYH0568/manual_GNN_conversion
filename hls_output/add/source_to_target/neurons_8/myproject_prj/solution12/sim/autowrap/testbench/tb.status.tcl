@@ -1,0 +1,1 @@
+set ::AESL_AUTOSIM::gTopFileName /home/ShiYuHuang/manual_GNN_conversion/hls_output/add/source_to_target/neurons_8/myproject_prj/solution12/./sim/autowrap/testbench/myproject.cpp_pre.cpp.tb.cpp

@@ -1,0 +1,249 @@
+<stg><name>concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1></name>
+
+
+<trans_list>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="2" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="8" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:0  %data2_3_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data2_3_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data2_3_V_read_1"/></StgValue>
+</operation>
+
+<operation id="3" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="9" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:1  %data2_2_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data2_2_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data2_2_V_read_1"/></StgValue>
+</operation>
+
+<operation id="4" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="10" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:2  %data2_1_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data2_1_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data2_1_V_read_1"/></StgValue>
+</operation>
+
+<operation id="5" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="11" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:3  %data2_0_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data2_0_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data2_0_V_read_1"/></StgValue>
+</operation>
+
+<operation id="6" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="12" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:4  %data1_2_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data1_2_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data1_2_V_read_1"/></StgValue>
+</operation>
+
+<operation id="7" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="13" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:5  %data1_1_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data1_1_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data1_1_V_read_1"/></StgValue>
+</operation>
+
+<operation id="8" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="14" bw="16" op_0_bw="16" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:6  %data1_0_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %data1_0_V_read)
+
+]]></Node>
+<StgValue><ssdm name="data1_0_V_read_1"/></StgValue>
+</operation>
+
+<operation id="9" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="15" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:7  %mrv = insertvalue { i16, i16, i16, i16, i16, i16, i16 } undef, i16 %data1_0_V_read_1, 0
+
+]]></Node>
+<StgValue><ssdm name="mrv"/></StgValue>
+</operation>
+
+<operation id="10" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="16" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:8  %mrv_1 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv, i16 %data1_1_V_read_1, 1
+
+]]></Node>
+<StgValue><ssdm name="mrv_1"/></StgValue>
+</operation>
+
+<operation id="11" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="17" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:9  %mrv_2 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv_1, i16 %data1_2_V_read_1, 2
+
+]]></Node>
+<StgValue><ssdm name="mrv_2"/></StgValue>
+</operation>
+
+<operation id="12" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="18" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:10  %mrv_3 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv_2, i16 %data2_0_V_read_1, 3
+
+]]></Node>
+<StgValue><ssdm name="mrv_3"/></StgValue>
+</operation>
+
+<operation id="13" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="19" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:11  %mrv_4 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv_3, i16 %data2_1_V_read_1, 4
+
+]]></Node>
+<StgValue><ssdm name="mrv_4"/></StgValue>
+</operation>
+
+<operation id="14" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="20" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:12  %mrv_5 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv_4, i16 %data2_2_V_read_1, 5
+
+]]></Node>
+<StgValue><ssdm name="mrv_5"/></StgValue>
+</operation>
+
+<operation id="15" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="21" bw="112" op_0_bw="112" op_1_bw="16">
+<![CDATA[
+.preheader.preheader:13  %mrv_6 = insertvalue { i16, i16, i16, i16, i16, i16, i16 } %mrv_5, i16 %data2_3_V_read_1, 6
+
+]]></Node>
+<StgValue><ssdm name="mrv_6"/></StgValue>
+</operation>
+
+<operation id="16" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="22" bw="0" op_0_bw="112">
+<![CDATA[
+.preheader.preheader:14  ret { i16, i16, i16, i16, i16, i16, i16 } %mrv_6
+
+]]></Node>
+<StgValue><ssdm name="ret_ln174"/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+</ports>
+
+
+<dataflows>
+</dataflows>
+
+
+</stg>

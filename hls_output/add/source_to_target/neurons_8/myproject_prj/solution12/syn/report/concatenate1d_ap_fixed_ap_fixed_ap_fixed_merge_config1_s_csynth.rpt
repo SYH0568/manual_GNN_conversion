@@ -1,0 +1,117 @@
+
+
+================================================================
+== Vivado HLS Report for 'concatenate1d_ap_fixed_ap_fixed_ap_fixed_merge_config1_s'
+================================================================
+* Date:           Tue Nov  9 10:02:03 2021
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        myproject_prj
+* Solution:       solution12
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 5.00 ns |   0 ns   |   0.62 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        0|        0|   0 ns   |   0 ns   |    1|    1| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+-------+---------+---------+-----+
+|         Name        | BRAM_18K| DSP48E|    FF   |   LUT   | URAM|
++---------------------+---------+-------+---------+---------+-----+
+|DSP                  |        -|      -|        -|        -|    -|
+|Expression           |        -|      -|        -|        -|    -|
+|FIFO                 |        -|      -|        -|        -|    -|
+|Instance             |        -|      -|        -|        -|    -|
+|Memory               |        -|      -|        -|        -|    -|
+|Multiplexer          |        -|      -|        -|        -|    -|
+|Register             |        -|      -|        -|        -|    -|
++---------------------+---------+-------+---------+---------+-----+
+|Total                |        0|      0|        0|        0|    0|
++---------------------+---------+-------+---------+---------+-----+
+|Available SLR        |     1440|   2280|   788160|   394080|  320|
++---------------------+---------+-------+---------+---------+-----+
+|Utilization SLR (%)  |        0|      0|        0|        0|    0|
++---------------------+---------+-------+---------+---------+-----+
+|Available            |     4320|   6840|  2364480|  1182240|  960|
++---------------------+---------+-------+---------+---------+-----+
+|Utilization (%)      |        0|      0|        0|        0|    0|
++---------------------+---------+-------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++----------------+-----+-----+------------+---------------------------------------------------------+--------------+
+|    RTL Ports   | Dir | Bits|  Protocol  |                      Source Object                      |    C Type    |
++----------------+-----+-----+------------+---------------------------------------------------------+--------------+
+|ap_ready        | out |    1| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_0     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_1     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_2     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_3     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_4     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_5     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|ap_return_6     | out |   16| ap_ctrl_hs | concatenate1d<ap_fixed,ap_fixed,ap_fixed,merge_config1> | return value |
+|data1_0_V_read  |  in |   16|   ap_none  |                      data1_0_V_read                     |    scalar    |
+|data1_1_V_read  |  in |   16|   ap_none  |                      data1_1_V_read                     |    scalar    |
+|data1_2_V_read  |  in |   16|   ap_none  |                      data1_2_V_read                     |    scalar    |
+|data2_0_V_read  |  in |   16|   ap_none  |                      data2_0_V_read                     |    scalar    |
+|data2_1_V_read  |  in |   16|   ap_none  |                      data2_1_V_read                     |    scalar    |
+|data2_2_V_read  |  in |   16|   ap_none  |                      data2_2_V_read                     |    scalar    |
+|data2_3_V_read  |  in |   16|   ap_none  |                      data2_3_V_read                     |    scalar    |
++----------------+-----+-----+------------+---------------------------------------------------------+--------------+
+

@@ -1,0 +1,79 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'edgeblock_ap_fixed_ap_uint_ap_fixed_config11_s'" level="0">
+<item name = "Date">Tue Nov  9 09:59:00 2021
+</item>
+<item name = "Version">2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution12</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu9p-flga2104-2L-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 4.375 ns, 0.62 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">34, 34, 0.170 us, 0.170 us, 34, 34, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4145">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4159">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4173">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4187">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4201">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4215">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4229">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4243">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4257">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4271">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4285">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4299">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4313">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4327">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4341">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_dense_mult_3lyr_ap_fixed_ap_fixed_config11_s_fu_4355">dense_mult_3lyr_ap_fixed_ap_fixed_config11_s, 5, 5, 25.000 ns, 25.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4369">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4376">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4383">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4390">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4397">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4404">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4411">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4418">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4425">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4432">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4439">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4446">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4453">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4460">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4467">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+<column name="grp_sigmoid_ap_fixed_ap_fixed_activation_config_s_fu_4474">sigmoid_ap_fixed_ap_fixed_activation_config_s, 1, 1, 5.000 ns, 5.000 ns, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- replicate_loop">7, 7, 2, 1, 1, 7, yes</column>
+<column name="- edge_loop_1">23, 23, 12, 1, 1, 12, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>

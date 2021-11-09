@@ -1,0 +1,144 @@
+
+
+================================================================
+== Vivado HLS Report for 'reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s'
+================================================================
+* Date:           Tue Nov  9 09:57:11 2021
+
+* Version:        2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)
+* Project:        myproject_prj
+* Solution:       solution12
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2L-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  | 5.00 ns | 2.633 ns |   0.62 ns  |
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |        0|        0|   0 ns   |   0 ns   |    1|    1| function |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.63>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "%x_15_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_15_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 2 'read' 'x_15_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "%x_14_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_14_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 3 'read' 'x_14_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%x_13_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_13_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 4 'read' 'x_13_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%x_12_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_12_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 5 'read' 'x_12_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%x_11_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_11_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 6 'read' 'x_11_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%x_10_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_10_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 7 'read' 'x_10_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%x_9_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_9_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 8 'read' 'x_9_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%x_8_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_8_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 9 'read' 'x_8_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%x_7_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_7_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 10 'read' 'x_7_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%x_6_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_6_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 11 'read' 'x_6_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%x_5_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_5_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 12 'read' 'x_5_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%x_4_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_4_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 13 'read' 'x_4_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%x_3_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_3_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 14 'read' 'x_3_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%x_2_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_2_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 15 'read' 'x_2_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%x_1_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_1_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 16 'read' 'x_1_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%x_0_V_read_1 = call i16 @_ssdm_op_Read.ap_auto.i16(i16 %x_0_V_read)" [firmware/nnet_utils/nnet_common.h:45]   --->   Operation 17 'read' 'x_0_V_read_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_1 = add i16 %x_15_V_read_1, %x_14_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 18 'add' 'add_ln703_1' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 19 [1/1] (0.60ns)   --->   "%add_ln703_2 = add i16 %x_12_V_read_1, %x_13_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 19 'add' 'add_ln703_2' <Predicate = true> <Delay = 0.60> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.60> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 20 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%add_ln703_3 = add i16 %add_ln703_2, %add_ln703_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 20 'add' 'add_ln703_3' <Predicate = true> <Delay = 0.67> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 21 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_4 = add i16 %x_8_V_read_1, %x_9_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 21 'add' 'add_ln703_4' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 22 [1/1] (0.60ns)   --->   "%add_ln703_5 = add i16 %x_10_V_read_1, %x_11_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 22 'add' 'add_ln703_5' <Predicate = true> <Delay = 0.60> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.60> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%add_ln703_6 = add i16 %add_ln703_5, %add_ln703_4" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 23 'add' 'add_ln703_6' <Predicate = true> <Delay = 0.67> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 24 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_7 = add i16 %add_ln703_6, %add_ln703_3" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 24 'add' 'add_ln703_7' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 25 [1/1] (0.60ns)   --->   "%add_ln703_8 = add i16 %x_0_V_read_1, %x_1_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 25 'add' 'add_ln703_8' <Predicate = true> <Delay = 0.60> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.60> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.60ns)   --->   "%add_ln703_9 = add i16 %x_2_V_read_1, %x_3_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 26 'add' 'add_ln703_9' <Predicate = true> <Delay = 0.60> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.60> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 27 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_10 = add i16 %add_ln703_9, %add_ln703_8" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 27 'add' 'add_ln703_10' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 28 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln703_11 = add i16 %x_4_V_read_1, %x_5_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 28 'add' 'add_ln703_11' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 29 [1/1] (0.60ns)   --->   "%add_ln703_12 = add i16 %x_6_V_read_1, %x_7_V_read_1" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 29 'add' 'add_ln703_12' <Predicate = true> <Delay = 0.60> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.60> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 30 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%add_ln703_13 = add i16 %add_ln703_12, %add_ln703_11" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 30 'add' 'add_ln703_13' <Predicate = true> <Delay = 0.67> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 31 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%add_ln703_14 = add i16 %add_ln703_13, %add_ln703_10" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 31 'add' 'add_ln703_14' <Predicate = true> <Delay = 0.67> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 32 [1/1] (0.67ns) (root node of TernaryAdder)   --->   "%add_ln703 = add i16 %add_ln703_14, %add_ln703_7" [firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55]   --->   Operation 32 'add' 'add_ln703' <Predicate = true> <Delay = 0.67> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.33> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 33 [1/1] (0.00ns)   --->   "ret i16 %add_ln703" [firmware/nnet_utils/nnet_common.h:55]   --->   Operation 33 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 0.625ns.
+
+ <State 1>: 2.63ns
+The critical path consists of the following:
+	wire read on port 'x_7_V_read' (firmware/nnet_utils/nnet_common.h:45) [25]  (0 ns)
+	'add' operation ('add_ln703_12', firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55) [44]  (0.608 ns)
+	'add' operation ('add_ln703_13', firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55) [45]  (0.675 ns)
+	'add' operation ('add_ln703_14', firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55) [46]  (0.675 ns)
+	'add' operation ('add_ln703', firmware/nnet_utils/nnet_common.h:62->firmware/nnet_utils/nnet_common.h:55) [47]  (0.675 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

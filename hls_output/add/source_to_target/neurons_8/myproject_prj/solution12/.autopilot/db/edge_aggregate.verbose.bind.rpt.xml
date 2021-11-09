@@ -1,0 +1,112 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'edge_aggregate'" level="0">
+<item name = "Date">Tue Nov  9 09:58:14 2021
+</item>
+<item name = "Version">2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)</item>
+<item name = "Project">myproject_prj</item>
+<item name = "Solution">solution12</item>
+<item name = "Product family">virtexuplus</item>
+<item name = "Target device">xcvu9p-flga2104-2L-e</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">5.00 ns, 3.821 ns, 0.62 ns</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="8">, min, max, min, max, min, max, Type</keys>
+<column name="">45, 45, 0.225 us, 0.225 us, 45, 45, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
+<column name="op_V_assign_0_0_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34029">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_0_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34066">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_0_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34103">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_0_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34140">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_1_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34177">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_1_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34214">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_1_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34251">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_1_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34288">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_2_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34325">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_2_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34362">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_2_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34399">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_2_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34436">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_3_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34473">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_3_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34510">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_3_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34547">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_3_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34584">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_4_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34621">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_4_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34658">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_4_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34695">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_4_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34732">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_5_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34769">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_5_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34806">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_5_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34843">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_5_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34880">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_6_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34917">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_6_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34954">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_6_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_34991">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_6_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35028">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_7_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35065">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_7_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35102">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_7_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35139">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_7_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35176">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_8_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35213">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_8_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35250">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_8_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35287">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_8_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35324">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_9_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35361">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_9_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35398">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_9_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35435">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_9_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35472">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_10_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35509">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_10_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35546">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_10_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35583">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_10_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35620">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_11_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35657">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_11_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35694">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_11_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35731">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_11_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35768">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_12_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35805">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_12_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35842">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_12_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35879">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_12_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35916">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_13_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35953">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_13_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_35990">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_13_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36027">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_13_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36064">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_14_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36101">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_14_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36138">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_14_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36175">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_14_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36212">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_15_s_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36249">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_15_1_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36286">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_15_2_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36323">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+<column name="op_V_assign_0_15_3_reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s_fu_36360">reduce_ap_fixed_16_Op_add_ap_fixed_16_8_5_3_0_s, 0, 0, 0 ns, 0 ns, 1, 1, function</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">7, 7, 1, -, -, 7, no</column>
+<column name="- Loop 2">26, 26, 3, 2, 1, 12, yes</column>
+<column name="- Loop 3">7, 7, 2, 1, 1, 7, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+</profile>
