@@ -297,72 +297,125 @@ namespace nnet {
     else{
       receiver_col = 0;
     }
-/*
+
     if(CONFIG_T::aggr==aggr_max){
-      ap_uint<1> edge_aggr_mask[CONFIG_T::n_node];
-      #pragma HLS ARRAY_PARTITION variable=edge_aggr_mask complete dim=0
+      ap_uint<1> edge_aggr_mask_mat[CONFIG_T::par_factor][CONFIG_T::n_node];
+      #pragma HLS ARRAY_PARTITION variable=edge_aggr_mask_mat complete dim=0
+
       for(int i=0;i<CONFIG_T::n_node;i++){
-        #pragma HLS UNROLL
-        edge_aggr_mask[i]=0;
+        #pragma HLS UNROLL 
+        for(int k=0; k < CONFIG_T::par_factor; k++)
+            #pragma HLS UNROLL
+            edge_aggr_mask_mat[k][i]=0;
       }
       res_T most_negative_num = -hls::numeric_limits<res_T>::max();
-
-      for(int i=0; i < CONFIG_T::n_node; i++){
-        #pragma HLS UNROLL
-        for(int j=0; j<CONFIG_T::edge_dim; j++){
-          #pragma HLS UNROLL
-          edge_attr_aggr[i][j] = most_negative_num;
+        for(int i=0; i < CONFIG_T::n_node; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            for(int k=0; k < CONFIG_T::par_factor; k++){
+                #pragma HLS UNROLL
+                for(int j=0; j<CONFIG_T::edge_dim; j++){
+                    #pragma HLS UNROLL
+                    edge_attr_aggr[k][i][j] = most_negative_num;
+                }
+            }
         }
-      }
-      for(int i=0; i < CONFIG_T::n_edge; i++){
-        #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+        for(int i=0; i < CONFIG_T::n_edge; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            index_T r = edge_index_1D[i*2+receiver_col];
+            edge_aggr_mask_mat[i%CONFIG_T::par_factor][r]=1;
+            for(int j=0; j<CONFIG_T::edge_dim; j++){
+                #pragma HLS UNROLL
+                edge_attr_aggr[i%CONFIG_T::par_factor][r][j] = edge_attr_1D[i*CONFIG_T::edge_dim+j] > edge_attr_aggr[i%CONFIG_T::par_factor][r][j] ? edge_attr_1D[i*CONFIG_T::edge_dim+j] : edge_attr_aggr[i%CONFIG_T::par_factor][r][j];
+            }
+        }
+      for(int i=0; i < CONFIG_T::n_node; i++){
         #pragma HLS UNROLL factor=CONFIG_T::par_factor
-        index_T r = edge_index_1D[i*2+receiver_col];
-        edge_aggr_mask[r]=1;
-        for(int j=0; j<CONFIG_T::edge_dim; j++){
-          edge_attr_aggr[r][j] = edge_attr_1D[i*CONFIG_T::edge_dim+j] > edge_attr_aggr[r][j] ? edge_attr_1D[i*CONFIG_T::edge_dim+j] : edge_attr_aggr[r][j];
-        }
-      }
-      for(int i=0; i < CONFIG_T::n_node; i++){
         #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
         for(int j=0; j<CONFIG_T::edge_dim; j++){
           #pragma HLS UNROLL
-          edge_attr_aggr[i][j] = edge_aggr_mask[i]*edge_attr_aggr[i][j];
+            for(int k=0; k < CONFIG_T::par_factor; k++){
+                #pragma HLS UNROLL
+                edge_attr_aggr[k%CONFIG_T::par_factor][i][j] = edge_aggr_mask_mat[k%CONFIG_T::par_factor][i]*edge_attr_aggr[k%CONFIG_T::par_factor][i][j];
+            }
         }
       }
+        for (int r=0; r < CONFIG_T::n_node; r++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            for (int k=0; k<CONFIG_T::par_factor; k++){
+                #pragma HLS UNROLL
+                for (int c=0; c<CONFIG_T::edge_dim; c++){
+                    #pragma HLS UNROLL
+                    if(k==0)
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=edge_attr_aggr[k][r][c];
+                    else 
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]+=edge_attr_aggr[k][r][c];
+                }
+            }
+        }
     }
     if(CONFIG_T::aggr==aggr_mean){
+      index_T num_edge_per_node_mat[CONFIG_T::par_factor][CONFIG_T::n_node];
+      #pragma HLS ARRAY_PARTITION variable=num_edge_per_node_mat complete dim=0
       index_T num_edge_per_node[CONFIG_T::n_node];
       #pragma HLS ARRAY_PARTITION variable=num_edge_per_node complete dim=0
       for(int i=0;i<CONFIG_T::n_node;i++){
-        #pragma HLS UNROLL
-        num_edge_per_node[i]=0;
+        #pragma HLS UNROLL 
+        for(int k=0; k < CONFIG_T::par_factor; k++)
+            #pragma HLS UNROLL
+            num_edge_per_node_mat[k][i]=0;
       }
-      for(int i=0; i < CONFIG_T::n_node; i++){
-        #pragma HLS UNROLL
-        for(int j=0; j<CONFIG_T::edge_dim; j++){
-          #pragma HLS UNROLL
-          edge_attr_aggr[i][j] = 0;
+        for(int i=0; i < CONFIG_T::n_node; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            for(int k=0; k < CONFIG_T::par_factor; k++){
+                #pragma HLS UNROLL
+                for(int j=0; j<CONFIG_T::edge_dim; j++){
+                    #pragma HLS UNROLL
+                    edge_attr_aggr[k][i][j] = 0;
+                }
+            }
         }
-      }
-      for(int i=0; i < CONFIG_T::n_edge; i++){
-        #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-        index_T r = edge_index_1D[i*2+receiver_col];
-        num_edge_per_node[r]+=1;
-        for(int j=0; j<CONFIG_T::edge_dim; j++){
-          edge_attr_aggr[r][j] += edge_attr_1D[i*CONFIG_T::edge_dim+j];
+        for(int i=0; i < CONFIG_T::n_edge; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            index_T r = edge_index_1D[i*2+receiver_col];
+            num_edge_per_node_mat[i%CONFIG_T::par_factor][r]+=1;
+            for(int j=0; j<CONFIG_T::edge_dim; j++){
+                #pragma HLS UNROLL
+                edge_attr_aggr[i%CONFIG_T::par_factor][r][j] += edge_attr_1D[i*CONFIG_T::edge_dim+j];
+            }
         }
-      }
+        for (int r=0; r < CONFIG_T::n_node; r++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            for (int k=0; k<CONFIG_T::par_factor; k++){
+                #pragma HLS UNROLL
+                for (int c=0; c<CONFIG_T::edge_dim; c++){
+                    #pragma HLS UNROLL
+                    if(k==0)
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=edge_attr_aggr[k][r][c];
+                    else 
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]+=edge_attr_aggr[k][r][c];
+                }
+                if(k==0)
+                    num_edge_per_node[r]=num_edge_per_node_mat[k][r];
+                else 
+                    num_edge_per_node[r]+=num_edge_per_node_mat[k][r];
+            }
+        }
       for(int i=0; i < CONFIG_T::n_node; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
         #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
         for (int j=0; j<CONFIG_T::edge_dim; j++){
           #pragma HLS UNROLL
           res_T edge_mean_j;
-          nnet::edge_divide<res_T, index_T, res_T, CONFIG_T>(edge_attr_aggr[i][j], num_edge_per_node[i], edge_mean_j);
-          edge_attr_aggr[i][j] = edge_mean_j;
+          nnet::edge_divide<res_T, index_T, res_T, CONFIG_T>(edge_attr_aggr_1D[i*CONFIG_T::edge_dim+j], num_edge_per_node[i], edge_mean_j);
+          edge_attr_aggr_1D[i*CONFIG_T::edge_dim+j] = edge_mean_j;
         }
       }
-    }*/
+    
+    }
     if(CONFIG_T::aggr==aggr_sum){
         for(int i=0; i < CONFIG_T::n_node; i++){
             #pragma HLS UNROLL factor=CONFIG_T::par_factor
@@ -383,21 +436,20 @@ namespace nnet {
                 edge_attr_aggr[i%CONFIG_T::par_factor][r][j] += edge_attr_1D[i*CONFIG_T::edge_dim+j];
             }
         }
-    }
-    //output array --> output vec
-    res_T edge[CONFIG_T::par_factor];
-    Op_add<res_T> op_add;
-    #pragma HLS ARRAY_PARTITION variable=edge complete dim=0
-    for (int r=0; r < CONFIG_T::n_node; r++){
-        #pragma HLS UNROLL factor=CONFIG_T::par_factor
-        #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-        for (int c=0; c<CONFIG_T::edge_dim; c++){
-            #pragma HLS UNROLL
+        //output array --> output vec
+        for (int r=0; r < CONFIG_T::n_node; r++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
             for (int k=0; k<CONFIG_T::par_factor; k++){
                 #pragma HLS UNROLL
-                edge[k]=edge_attr_aggr[k][r][c];
+                for (int c=0; c<CONFIG_T::edge_dim; c++){
+                    #pragma HLS UNROLL
+                    if(k==0)
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=edge_attr_aggr[k][r][c];
+                    else 
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]+=edge_attr_aggr[k][r][c];
+                }
             }
-            edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=nnet::reduce<res_T,CONFIG_T::par_factor,Op_add<res_T>>(edge,op_add);
         }
     }
   }
