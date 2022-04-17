@@ -40,9 +40,9 @@ void myproject(
     int layer9_out_dim = LAYER9_OUT_DIM*16;
 
     //hls-fpga-machine-learning insert IO
-    #pragma HLS ARRAY_PARTITION variable=node_attr cyclic factor=node_dim dim=1
-    #pragma HLS ARRAY_PARTITION variable=edge_attr cyclic factor=edge_dim dim=1
-    #pragma HLS ARRAY_PARTITION variable=edge_index cyclic factor=two dim=1
+    #pragma HLS ARRAY_RESHAPE variable=node_attr cyclic factor=node_dim dim=1
+    #pragma HLS ARRAY_RESHAPE variable=edge_attr cyclic factor=edge_dim dim=1
+    #pragma HLS ARRAY_RESHAPE variable=edge_index cyclic factor=two dim=1
     #pragma HLS ARRAY_PARTITION variable=layer11_out cyclic factor=layer11_out_dim dim=1
     #pragma HLS INTERFACE ap_vld port=node_attr,edge_attr,edge_index,layer11_out 
     #pragma HLS DATAFLOW 

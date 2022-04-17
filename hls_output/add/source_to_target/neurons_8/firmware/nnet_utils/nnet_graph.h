@@ -285,10 +285,16 @@ namespace nnet {
             res_T     edge_attr_aggr_1D[CONFIG_T::n_node*CONFIG_T::edge_dim])
   {
     #pragma HLS INLINE
-    res_T edge_attr_aggr[CONFIG_T::par_factor][CONFIG_T::n_node][CONFIG_T::edge_dim];
+    res_T edge_attr_aggr[CONFIG_T::par_factor*2][CONFIG_T::n_node][CONFIG_T::edge_dim];
+    //bool flag[CONFIG_T::par_factor*2][CONFIG_T::n_node];
+    //#pragma HLS ARRAY_PARTITION variable=flag complete dim=1
+    //#pragma HLS ARRAY_PARTITION variable=flag complete dim=2  
+    
     #pragma HLS ARRAY_PARTITION variable=edge_attr_aggr complete dim=1
-    #pragma HLS ARRAY_PARTITION variable=edge_attr_aggr cyclic factor=CONFIG_T::par_factor dim=2
-    #pragma HLS ARRAY_PARTITION variable=edge_attr_aggr complete dim=3
+    #pragma HLS ARRAY_PARTITION variable=edge_attr_aggr cyclic factor=CONFIG_T::par_factor dim=2  /////not sure
+    #pragma HLS ARRAY_PARTITION variable=edge_attr_aggr complete dim=3  /////not sure
+    //#pragma HLS BIND_STORAGE variable=edge_attr_aggr type=RAM_1P  impl=bram
+    //#pragma HLS DEPENDENCE variable=edge_attr_aggr inter RAW false
 
     int receiver_col;
     if(CONFIG_T::flow == source_to_target){
@@ -297,7 +303,77 @@ namespace nnet {
     else{
       receiver_col = 0;
     }
-
+    if(CONFIG_T::aggr==aggr_sum){
+        
+                                               
+        agg_loop1:for(int i=0; i < CONFIG_T::n_node; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor*2
+            for(int k=0; k < CONFIG_T::par_factor*2; k++){
+                #pragma HLS UNROLL
+                for(int j=0; j<CONFIG_T::edge_dim; j++){
+                    #pragma HLS UNROLL                 
+                    edge_attr_aggr[k][i][j] = 0;
+                }
+            }
+        }
+        //index_T old_r[CONFIG_T::par_factor*2];
+        //res_T agg_data[CONFIG_T::par_factor*2][CONFIG_T::edge_dim];   
+        //#pragma HLS ARRAY_PARTITION variable=old_r complete dim=0
+        //#pragma HLS ARRAY_PARTITION variable=agg_data complete dim=0      
+        agg_loop2:for(int i=0; i < CONFIG_T::n_edge; i++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor*2
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            index_T r = edge_index_1D[i*2+receiver_col];
+            //index_T r1 = edge_index_1D[i*2+receiver_col];
+            //index_T r2 = edge_index_1D[(i+CONFIG_T::n_edge/2)*2+receiver_col];
+            /*
+            if(i/(CONFIG_T::par_factor*2)==0){
+              old_r[i%(CONFIG_T::par_factor*2)]=r;
+              for(int j=0; j<CONFIG_T::edge_dim; j++){
+                  #pragma HLS UNROLL
+                  agg_data[i%(CONFIG_T::par_factor*2)][j]=edge_attr_1D[i*CONFIG_T::edge_dim+j];  
+                }
+            }
+            else{
+              if(old_r[i%(CONFIG_T::par_factor*2)]==r){
+                for(int j=0; j<CONFIG_T::edge_dim; j++){
+                  #pragma HLS UNROLL
+                  agg_data[i%(CONFIG_T::par_factor*2)][j]+=edge_attr_1D[i*CONFIG_T::edge_dim+j];
+                }
+              }
+              else{
+                for(int j=0; j<CONFIG_T::edge_dim; j++){
+                  #pragma HLS UNROLL
+                  edge_attr_aggr[i%(CONFIG_T::par_factor*2)][old_r[i%(CONFIG_T::par_factor*2)]][j] = agg_data[i%(CONFIG_T::par_factor*2)][j];
+                  agg_data[i%(CONFIG_T::par_factor*2)][j] =edge_attr_aggr[i%(CONFIG_T::par_factor*2)][r][j] +  edge_attr_1D[i*CONFIG_T::edge_dim+j];
+                }
+              }
+            }
+            old_r[i%(CONFIG_T::par_factor*2)]=r;
+            */
+            
+            for(int j=0; j<CONFIG_T::edge_dim; j++){
+                  #pragma HLS UNROLL
+                  edge_attr_aggr[i%(CONFIG_T::par_factor*2)][r][j]+=edge_attr_1D[i*CONFIG_T::edge_dim+j];
+            }
+                                                            
+        }
+        //output array --> output vec
+        agg_loop3:for (int r=0; r < CONFIG_T::n_node; r++){
+            #pragma HLS UNROLL factor=CONFIG_T::par_factor*2
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
+            for (int k=0; k<CONFIG_T::par_factor*2; k++){
+                #pragma HLS UNROLL
+                for (int c=0; c<CONFIG_T::edge_dim; c++){
+                    #pragma HLS UNROLL                
+                    if(k==0)
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=edge_attr_aggr[k][r][c];
+                    else 
+                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]+=edge_attr_aggr[k][r][c];
+                }
+            }
+        }
+    }
     if(CONFIG_T::aggr==aggr_max){
       ap_uint<1> edge_aggr_mask_mat[CONFIG_T::par_factor][CONFIG_T::n_node];
       #pragma HLS ARRAY_PARTITION variable=edge_aggr_mask_mat complete dim=0
@@ -370,6 +446,7 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
             num_edge_per_node_mat[k][i]=0;
       }
         for(int i=0; i < CONFIG_T::n_node; i++){
+            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor //not sure 0224 add
             #pragma HLS UNROLL factor=CONFIG_T::par_factor
             for(int k=0; k < CONFIG_T::par_factor; k++){
                 #pragma HLS UNROLL
@@ -419,42 +496,6 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
       }
     
     }
-    if(CONFIG_T::aggr==aggr_sum){
-        for(int i=0; i < CONFIG_T::n_node; i++){
-            #pragma HLS UNROLL factor=CONFIG_T::par_factor
-            for(int k=0; k < CONFIG_T::par_factor; k++){
-                #pragma HLS UNROLL
-                for(int j=0; j<CONFIG_T::edge_dim; j++){
-                    #pragma HLS UNROLL
-                    edge_attr_aggr[k][i][j] = 0;
-                }
-            }
-        }
-        for(int i=0; i < CONFIG_T::n_edge; i++){
-            #pragma HLS UNROLL factor=CONFIG_T::par_factor
-            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-            index_T r = edge_index_1D[i*2+receiver_col];
-            for(int j=0; j<CONFIG_T::edge_dim; j++){
-                #pragma HLS UNROLL
-                edge_attr_aggr[i%CONFIG_T::par_factor][r][j] += edge_attr_1D[i*CONFIG_T::edge_dim+j];
-            }
-        }
-        //output array --> output vec
-        for (int r=0; r < CONFIG_T::n_node; r++){
-            #pragma HLS UNROLL factor=CONFIG_T::par_factor
-            #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-            for (int k=0; k<CONFIG_T::par_factor; k++){
-                #pragma HLS UNROLL
-                for (int c=0; c<CONFIG_T::edge_dim; c++){
-                    #pragma HLS UNROLL
-                    if(k==0)
-                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]=edge_attr_aggr[k][r][c];
-                    else 
-                        edge_attr_aggr_1D[r*CONFIG_T::edge_dim+c]+=edge_attr_aggr[k][r][c];
-                }
-            }
-        }
-    }
   }
 
   template<class data_T, class index_T, class res_T, typename CONFIG_T>
@@ -486,12 +527,12 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
 
     data_T node_attr_1D_mat[CONFIG_T::par_factor][CONFIG_T::n_node][CONFIG_T::node_dim];
     #pragma HLS ARRAY_PARTITION variable=node_attr_1D_mat complete  dim=1
-    #pragma HLS ARRAY_RESHAPE variable=node_attr_1D_mat cyclic factor=CONFIG_T::par_factor dim=2
+    #pragma HLS ARRAY_PARTITION variable=node_attr_1D_mat cyclic factor=CONFIG_T::par_factor dim=2
     #pragma HLS ARRAY_PARTITION variable=node_attr_1D_mat complete dim=3
     replicate_loop:for(int j=0;j<CONFIG_T::n_node;j=j+1)
     {
+      #pragma HLS UNROLL factor=CONFIG_T::par_factor*2
       #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-      #pragma HLS UNROLL factor=CONFIG_T::par_factor
       for(int i=0;i<CONFIG_T::par_factor;i++)
       {
         #pragma HLS UNROLL
@@ -502,8 +543,8 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
       }
     }
     edge_loop_1: for(int i = 0; i < CONFIG_T::n_edge; i+=1) { //for each edge
-      #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
       #pragma HLS UNROLL factor=CONFIG_T::par_factor
+      #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
       data_T edge_attr[CONFIG_T::edge_dim];
       #pragma HLS ARRAY_PARTITION variable=edge_attr complete dim=0
       trans_loop_1: for (int c=0; c < CONFIG_T::edge_dim; c++){
@@ -520,8 +561,8 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
       #pragma HLS ARRAY_PARTITION variable=node_attr_s complete dim=0
       trans_loop_3: for (int c=0; c < CONFIG_T::node_dim; c++){
         #pragma HLS UNROLL
-        node_attr_s[c] = node_attr_1D_mat[i%CONFIG_T::par_factor][s][c];
-        node_attr_r[c] = node_attr_1D_mat[i%CONFIG_T::par_factor][r][c];
+        node_attr_s[c] = node_attr_1D_mat[i%(CONFIG_T::par_factor)][s][c];
+        node_attr_r[c] = node_attr_1D_mat[i%(CONFIG_T::par_factor)][r][c];
       }
 
       data_T phi_input[CONFIG_T::edge_dim + 2*CONFIG_T::node_dim];
@@ -586,7 +627,7 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
     node_loop: for(int i = 0; i < CONFIG_T::n_node; i++){ //for each node
 
       #pragma HLS PIPELINE II=CONFIG_T::reuse_factor
-        #pragma HLS UNROLL factor=CONFIG_T::par_factor
+        #pragma HLS UNROLL factor=CONFIG_T::par_factor*2
        data_T node_attr[CONFIG_T::node_dim];
        #pragma HLS ARRAY_PARTITION variable=node_attr complete dim=0
       trans_loop_1: for (int c=0; c < CONFIG_T::node_dim; c++){
@@ -884,6 +925,7 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
             index_T   edge_index_1D[CONFIG_T::n_edge*2],
             res_T     edge_attr_aggr_1D[CONFIG_T::n_node*CONFIG_T::edge_dim])
   {
+      //#pragma HLS INLINE
       if(CONFIG_T::gnn_resource_limit){
         edge_aggregate_dataflow<data_T,index_T,res_T,CONFIG_T>(edge_attr_1D,edge_index_1D,edge_attr_aggr_1D);
       }
@@ -907,6 +949,7 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
 			typename CONFIG_T::dense_config4::weight_t  core_edge_w3[CONFIG_T::dense_config4::n_in*CONFIG_T::dense_config4::n_out],
 			typename CONFIG_T::dense_config4::bias_t    core_edge_b3[CONFIG_T::dense_config4::n_out])
   {
+      //#pragma HLS INLINE
       if(CONFIG_T::gnn_resource_limit){
         edgeblock_dataflow<data_T,index_T,res_T,CONFIG_T>(node_attr_1D,edge_attr_1D,edge_index_1D,edge_update_1D,core_edge_w0,core_edge_b0,core_edge_w1,core_edge_b1,core_edge_w2,core_edge_b2,core_edge_w3,core_edge_b3);
       }
@@ -928,7 +971,8 @@ masking:for(int i=0; i < CONFIG_T::n_node; i++){
 			typename CONFIG_T::dense_config3::bias_t    core_node_b2[CONFIG_T::dense_config3::n_out],
 			typename CONFIG_T::dense_config4::weight_t  core_node_w3[CONFIG_T::dense_config4::n_in*CONFIG_T::dense_config4::n_out],
 			typename CONFIG_T::dense_config4::bias_t    core_node_b3[CONFIG_T::dense_config4::n_out])
-  {
+  {  
+      //#pragma HLS INLINE
       if(CONFIG_T::gnn_resource_limit){
         nodeblock_dataflow<data_T,res_T,CONFIG_T>(node_attr_1D,edge_attr_aggr_1D,node_update_1D,core_node_w0,core_node_b0,core_node_w1,core_node_b1,core_node_w2,core_node_b2,core_node_w3,core_node_b3);
       }
